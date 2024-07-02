@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/xboxinarms2/projects/streamlit/.venv"
+set -gx VIRTUAL_ENV "/home/xboxinarms2/projects/Fake News Detector Web App V1 /.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

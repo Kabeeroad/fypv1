@@ -1,4 +1,6 @@
-#!/home/xboxinarms2/projects/streamlit/.venv/bin/python3
+#!/bin/sh
+'''exec' "/home/xboxinarms2/projects/Fake News Detector Web App V1 /.venv/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
