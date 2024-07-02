@@ -7,3 +7,4 @@ nltk
 vaderSentiment
 st-gsheets-connection
 joblib
+--no-binary :all:
