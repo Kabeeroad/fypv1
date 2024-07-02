@@ -5,5 +5,5 @@ scikit-learn
 regex
 nltk
 vaderSentiment
-streamlit-gsheets
+st-gsheets-connection
 joblib
