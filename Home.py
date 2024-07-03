@@ -40,7 +40,16 @@ def predict(data):
     data2 = pd.DataFrame([data], columns = ['Statement'])
     data2['Statement'] = preprocess(data2['Statement'])
 
-    df = pd.read_csv('Lemm_df.csv',encoding='latin-1')
+    df1 = pd.read_csv('dataset/Lemm_df_part_1.csv',encoding='latin-1')
+    df2 = pd.read_csv('dataset/Lemm_df_part_2.csv',encoding='latin-1')
+    df3 = pd.read_csv('dataset/Lemm_df_part_3.csv',encoding='latin-1')
+    df4 = pd.read_csv('dataset/Lemm_df_part_4.csv',encoding='latin-1')
+    df5 = pd.read_csv('dataset/Lemm_df_part_5.csv',encoding='latin-1')
+    df6 = pd.read_csv('dataset/Lemm_df_part_6.csv',encoding='latin-1')
+    df7 = pd.read_csv('dataset/Lemm_df_part_7.csv',encoding='latin-1')
+    df8 = pd.read_csv('dataset/Lemm_df_part_8.csv',encoding='latin-1')
+    df=pd.concat([df1,df2,df3,df4,df5,df6,df7,df8],ignore_index=True)
+    st.write(df.tail())
     df = df.dropna()
     vectorizer = TfidfVectorizer()
     tfidf_matrix = vectorizer.fit_transform(df['Statement']) #instead of transforming each time could load transformed one 
