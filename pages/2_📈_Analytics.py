@@ -11,7 +11,7 @@ from streamlit_gsheets import GSheetsConnection
 
 st.header('Analytics📈')
 
-conn = st.connection("gsheets",type=GSheetsConnection,show_spinner=False)
+conn = st.connection("gsheets",type=GSheetsConnection)
 sql="""
 SELECT COUNT(Classification) FROM Sheet1 where Classification == 'Fake'
 """ #uses sql select statement to get updated result
