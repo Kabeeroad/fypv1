@@ -7,3 +7,4 @@ nltk
 vaderSentiment
 streamlit-gsheets
 joblib
+wordcloud

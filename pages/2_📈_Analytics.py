@@ -8,8 +8,10 @@ import sklearn
 import regex
 import nltk
 from streamlit_gsheets import GSheetsConnection
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 
-st.header('Analytics📈')
+st.title('Analytics📈')
 
 conn = st.connection("gsheets",type=GSheetsConnection)
 sql="""
@@ -93,4 +95,24 @@ elif option == 'All Time':
     counts=pd.DataFrame(select['Classification'].value_counts())
     chart_data = pd.DataFrame(counts)
     st.bar_chart(data=chart_data, color='#0f5bd1')
+
+retreive = "SELECT * FROM Sheet1"
+select=conn.query(sql=retreive,ttl=20)
+df=pd.DataFrame(select)
+fake = df[df['Classification'] == 'Fake']['Article']
+real = df[df['Classification'] == 'Real']['Article']
+
+st.header('Most common words in Fake News articles:')
+text = " ".join(t for t in fake)
+word_cloud = WordCloud(collocations = False, background_color = 'black').generate(text)
+plt.imshow(word_cloud, interpolation='bilinear')
+plt.axis("off")
+st.pyplot(plt)  
+
+st.header('Most common words in Real News articles:')
+text = " ".join(t for t in real)
+word_cloud = WordCloud(collocations = False, background_color = 'black').generate(text)
+plt.imshow(word_cloud, interpolation='bilinear')
+plt.axis("off")
+st.pyplot(plt)   
 

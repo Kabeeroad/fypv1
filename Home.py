@@ -32,7 +32,7 @@ def load_model():
     return model
 
 #function for getting data and making prediction
-@st.cache_data(show_spinner=False) 
+@st.cache_data() 
 def predict(data):
     model = load_model()
     sentiment = get_sentiment(data)
