@@ -14,10 +14,10 @@ from wordcloud import WordCloud
 st.title('Analytics📈')
 
 conn = st.connection("gsheets",type=GSheetsConnection)
-sql="""
+sqlquery="""
 SELECT COUNT(Classification) FROM Sheet1 where Classification == 'Fake'
 """ #uses sql select statement to get updated result
-select=conn.query(sql=sql,ttl=20)
+select=conn.query(sql=sqlquery,ttl=20)
 df=pd.DataFrame(select)
 fake = int(df['count(Classification)'].iloc[0])
 
