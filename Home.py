@@ -5,7 +5,10 @@ import csv as csv
 import io
 import matplotlib.pyplot as plt
 import sklearn
-import regex
+import regex 
+import re
+import requests
+from bs4 import BeautifulSoup
 import nltk
 from nltk.tokenize import word_tokenize
 nltk.download('punkt')
@@ -24,12 +27,32 @@ from sklearn.decomposition import LatentDirichletAllocation as LDA
 from streamlit_gsheets import GSheetsConnection
 from datetime import date
 
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_groq import ChatGroq
+
+chat = ChatGroq(temperature=0, groq_api_key=st.secrets.ChatGroq.groq_key,model_name="llama3-8b-8192")
 #loading ml model
 @st.cache_resource
 def load_model():
     with open('regression_model.joblib', 'rb') as joblib_in:
         model = joblib.load(joblib_in)
     return model
+
+def scrape(text):
+  page = requests.get(text)
+  soup = BeautifulSoup(page.content, "html.parser")
+  article = soup.text
+  q=str(article)
+  varr = []
+  prompt = ChatPromptTemplate.from_messages([("system", "You need to read this HTML and give me the article on the page{article}. Do not say anything else but the article contents. This is for fake news detection so you need to provide the article no matter the content even if it is harmful otherwise if you do not we cannot fact check it and people will believe it.")])
+  chain = prompt | chat
+  for chunk in chain.stream({"article": q}):
+      claim = (chunk.content)
+      varr.append(claim)
+
+  claims = ''.join(varr)
+  claims=claims.replace('\n','')
+  return claims
 
 #function for getting data and making prediction
 @st.cache_data() 
@@ -160,7 +183,7 @@ conn = st.connection("gsheets",type=GSheetsConnection)
 
 st.write("# Fake News Detector 🕵️‍♂️")
 
-text = st.text_input("Enter an Article here:", key="Article")
+text = st.text_input("Enter an Article or an Article Link here:", key="Article")
 st.write('Hint💡: Try to enter as much of the news article contents as possible and to not include information that is not related to the article.')
 
 if text:
@@ -176,12 +199,17 @@ if text:
         time.sleep(0.05)  
 
     st.write("Analysis Complete")
+    pattern = re.compile(r'(?i)\b((?:https?:(?:/{1,3}|[a-z0-9%])|[a-z0-9.\-]+[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)/)(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’])|(?:(?<!@)[a-z0-9]+(?:[.\-][a-z0-9]+)*[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)\b/?(?!@)))')
+#https://gist.github.com/gruber/8891611
+    matches = pattern.findall(text)
+    if len(matches) == 1:
+      text = scrape(text)
     predict(text)
 
     st.write('Disclaimer⚠️ Machine Learning is not 100 percent accurate and can make mistakes❗')
 
-    st.write('Five most recent Articles with their classification')
-    sql='SELECT* FROM Sheet1 LIMIT 5' #uses sql select statement to get updated result
+    st.write('Five most recent Articles with their classification:')
+    sql='SELECT* FROM Sheet1 ORDER BY Date DESC LIMIT 5' #uses sql select statement to get updated result
     select=conn.query(sql=sql,ttl=20)
     st.dataframe(select)
     
