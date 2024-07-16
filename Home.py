@@ -58,7 +58,7 @@ def check_db(text):
       llm = select['LLM'].loc[0]
       topics = select['Topic'].loc[0]
       sentiment = select['Sentiment'].loc[0]
-      sent_dict={'Positive':':green[**Positive**]','Negative':':red[**Negative**]','Neutral':'[**Neutral**]'}#streamlit doesnt support yellow
+      sent_dict={'Positive':':green[**Positive**]','Negative':':red[**Negative**]','Neutral':'**Neutral**'}#streamlit doesnt support yellow
 
       if classification == 'Real':
          colour = ':green'
@@ -67,7 +67,7 @@ def check_db(text):
       st.markdown(f'We have already classified this article and found it was {colour}[**{classification}**]') # need to work out the colour c 
       st.markdown('Our Large Language model has Fact-Checked the claims and found:')
       st.write(llm)
-      st.write(f'Additionally we found that this news article with the keywords of "{topics}" has a {sent_dict[sentiment]} sentiment')
+      st.markdown(f'Additionally we found that this news article with the keywords of "{topics}" has a {sent_dict[sentiment]} sentiment')
     except:
       return False
    
@@ -224,7 +224,7 @@ def get_sentiment(article):
     rating = values[1]
   elif compound_score <= -0.5:
     rating = values[2]
-  sent_dict={'Positive':':green[**Positive**]','Negative':':red[**Negative**]','Neutral':'[**Neutral**]'}
+  sent_dict={'Positive':':green[**Positive**]','Negative':':red[**Negative**]','Neutral':'**Neutral**'}
   return rating, sent_dict
 
 @st.cache_data(show_spinner=False)        
@@ -294,7 +294,7 @@ if text:
       sentiment, sentiment_coloured = get_sentiment(text)
       text_list = [text]
       topics = topic(text_list)    
-      st.write(f'Additionally we found that this news article with the keywords of "{topics}" has a {sentiment_coloured[sentiment]} sentiment')
+      st.markdown(f'Additionally we found that this news article with the keywords of "{topics}" has a {sentiment_coloured[sentiment]} sentiment')
       stuff.append(result)
       stuff.append(sentiment)
       stuff.append(topics)
