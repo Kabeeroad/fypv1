@@ -285,11 +285,11 @@ if text:
     if verify == False:
       stuff = predict(text)
       st.markdown('*please wait while our Large Language Model checks the facts of this article...*')
-      try: #exception handling for llm agent becuase does not always work
-         result = agent(text)
-      except Exception as e:
-         st.write('An Error has occurred please try again later!')
-         result = 'NA' 
+      #try: #exception handling for llm agent becuase does not always work
+      result = agent(text)
+      #except Exception as e:
+         #st.write('An Error has occurred please try again later!')
+         #result = 'NA' 
       st.markdown('**Disclaimer**⚠️ Machine Learning is not 100 percent accurate and can make mistakes')
       sentiment, sentiment_coloured = get_sentiment(text)
       text_list = [text]
