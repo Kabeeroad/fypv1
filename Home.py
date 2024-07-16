@@ -294,7 +294,7 @@ if text:
       sentiment, sentiment_coloured = get_sentiment(text)
       text_list = [text]
       topics = topic(text_list)    
-      st.write(f'Additionally we found that this news article with the keywords of "{topics}" has a {sentiment_coloured} sentiment')
+      st.write(f'Additionally we found that this news article with the keywords of "{topics}" has a {sentiment_coloured[sentiment]} sentiment')
       stuff.append(result)
       stuff.append(sentiment)
       stuff.append(topics)
