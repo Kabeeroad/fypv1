@@ -14,3 +14,4 @@ groq
 langchain-groq
 langchain
 langchain-community
+duckduckgo_search==6.1.11
