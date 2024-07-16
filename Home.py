@@ -49,7 +49,7 @@ def check_db(text):
     conn = st.connection("gsheets",type=GSheetsConnection)
     try:
       text=str(text)
-      text = text.replace("'", "''")
+      text = text.replace("'", "''") #sanitises text
       sqlQuery=f"SELECT EXISTS(SELECT 1 FROM Sheet1 where Article = '{text}') AS news_exist" 
       select=conn.query(sql=sqlQuery,ttl=20)
       sql=f"SELECT * FROM Sheet1 WHERE Article ='{text}'" #uses sql select statement to get updated result
