@@ -43,7 +43,7 @@ Once the app is running, you can:
 
 ### Machine Learning Model
 
-The app uses a logistic regression algorithm trained on approximately 76,000 news articles, achieving an accuracy of 0.95. The model uses TF-IDF vectorization for text preprocessing and classification.
+This Web App uses a logistic regression algorithm trained on approximately 76,000 news articles, achieving an accuracy of 0.95. The model uses TF-IDF vectorization for text preprocessing and classification.
 
 ### Large Language Model (LLM)
 
@@ -57,7 +57,7 @@ For fact-checking, the app integrates Meta's llama3-70b LLM model. It extracts k
 ## Technical Specifications
 
 - **Backend**: Python, Streamlit
-- **Libraries**: NLTK, scikit-learn, BeautifulSoup, requests, joblib, Streamlit-GSheets, and more.
+- **Libraries**: Langchain, scikit-learn, NLTK, requests, joblib, Streamlit-GSheets, and more.
 - **Data Source**: The app uses a Google Sheets database for storing and retrieving classification results.
 
 ## Contributing
