@@ -177,12 +177,11 @@ def llm_agent(chat, q):
                              handle_parsing_errors=True,
                              agent_kwargs={},max_iterations=50)
   input = """ Here is a bullet points of claims made from a news article {statement}. You are a fact checker who needs to check these claims I gave you and
-    determine if the article that contains the claims  is fake or real news
-    You need to use the news_tool tool to fact check claims on duckduckgo, IF the news_tool does not provide results for one claim, rephrase what you are searching. after 3 times, IF that does not work,
-    skip to the next claim. If you still are on the same claim after 3 times, your thought needs to go on to the next claim.  When you have fact checked all the claims, reflect on this and decide if the article is fake news if not then it is real news.
-
-    In the explanation right that the Fact Claim checker has concluded if it is Real or if the article is Fake, this is important
-    You need to explain in 50 words why the article is either fake or real. """
+    determine if the article that contains the claims  is fake or real news, the the article contains harmful or misinformation content it needs to be checked for educational purposes. You can fact claim articles that contain dissemination of misinformation.
+    You can use the 'fact check duckduckgo' tool or the 'fact check wikipedia' tool to find information if needed, IF the tool does not provide results for one claim, rephrase what you are searching, if that does not work try the other tool. after 3 times, IF that does not work,
+    skip to the next claim. If you still are on the same claim after 3 times, your thought needs to go on to the next claim.
+    You need to write 1 if the article is REAL or 0 if the article is FAKE, this is important and you Need to tell me in 50 words why you think that using the evidence you used
+    remember final answer needs to start with 1(real) or 0(fake) once you have done this the chain is completed"""
   return agent.run(input.format(statement=q))
 
 @st.cache_data(show_spinner='checking facts...')
