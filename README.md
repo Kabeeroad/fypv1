@@ -10,7 +10,10 @@ Welcome! This web application uses cutting-edge tools from machine learning and 
 - **Topic Modeling**: Identify key topics discussed in the article using Latent Dirichlet Allocation (LDA).
 - **Analytics Dashboard**: View statistics on classified articles and trends over various time periods.
 
-## Installation
+- Try it now at: **https://fake-news-detector-web-app-v1.streamlit.app/**
+  
+
+## Installation if wanting to try locally:
 
 1. Clone the repository:
    ```bash
