@@ -278,7 +278,7 @@ st.set_page_config(
     page_icon="🕵️‍♂️",
 )
 
-#conn = st.connection("gsheets",type=GSheetsConnection) #loading connection to db
+conn = st.connection("gsheets",type=GSheetsConnection) #loading connection to db
 st.write("# Fake News Detector 🕵️‍♂️")
 text = st.text_input("Enter an Article or an Article Link here:", key="Article")
 st.write('Hint💡: Try to enter as much of the news article contents as possible and to not include information that is not related to the article.')
