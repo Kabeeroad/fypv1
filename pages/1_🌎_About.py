@@ -22,5 +22,5 @@ tab2.subheader("Technical Specifications")
 tab2.write("The fake news detector framework works like this:")
 tab2.image("pages/images/Framework.png")
 tab2.write("This uses a Logistic Regression algorithim trained on around 76,000 news articles achieving 0.95 accuracy.")
-tab2.write("To fact check the claims, Meta's llama3-8b LLM model with the tools of duckduckgo and wikipedia are used.")
+tab2.write("To fact check the claims, Meta's llama3-70b LLM model with the tools of Duckduckgo and Wikipedia are used.")
 
