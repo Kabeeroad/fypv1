@@ -28,10 +28,12 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.tools import DuckDuckGoSearchRun
+from langchain.tools import WikipediaQueryRun
+from langchain_community.utilities import WikipediaAPIWrapper
 from langchain.agents import Tool, load_tools, initialize_agent, AgentType
 
 #getting llm model from groq api
-chat = ChatGroq(temperature=0, groq_api_key=st.secrets.ChatGroq.groq_key,model_name="llama3-8b-8192")
+chat = ChatGroq(temperature=0, groq_api_key=st.secrets.ChatGroq.groq_key,model_name="llama3-70b-8192")
 
 @st.cache_resource
 def load_model():
@@ -158,6 +160,15 @@ def llm_agent(chat, q):
         func=search,
         description="useful for checking facts from news articles using the internet"
     )
+
+  wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
+  wikipedia = Tool(
+        name = "fact check wikipedia",
+        func=wikipedia,
+        description="useful for checking facts from news articles using the wikipedia database"
+    )
+    
+    
   print(f'Inside generate_and_print: q = {q}')
   tool = [news_tool]
   agent = initialize_agent(tool, chat,
