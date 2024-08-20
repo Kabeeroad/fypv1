@@ -1,11 +1,12 @@
 # Fake News Detector Web App
 
-Welcome! This web application uses cutting-edge tools from machine learning and large language models to help users determine the authenticity of news articles. Whether you are trying to verify the credibility of a news piece or just curious about the sentiment and topics covered, our app can provide that.
+Welcome! This web application uses a hybrid approach developed from research using machine learning and large language models to help users determine the authenticity of news articles. The App also provides sentiment and topic analysis. 
+
 
 ## Features
 
 - **Article Classification**: Determine if an article is real or fake using a trained logistic regression model.
-- **Fact-Checking**: Leverage Meta's llama3-70b LLM model along with tools like DuckDuckGo and Wikipedia to fact-check claims in articles.
+- **Fact-Checking**: Leverage Meta's llama3-70b LLM model along with tools like DuckDuckGo and Wikipedia to fact-check claims from articles.
 - **Sentiment Analysis**: Analyze the overall sentiment of the article (Positive, Neutral, or Negative).
 - **Topic Modeling**: Identify key topics discussed in the article using Latent Dirichlet Allocation (LDA).
 - **Analytics Dashboard**: View statistics on classified articles and trends over various time periods.
