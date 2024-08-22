@@ -47,16 +47,16 @@ def load_model():
 @st.cache_data(show_spinner=False)  
 def check_db(text):
     '''checks if text exists in database by using exception handling if not exists will be run 
-    through ml and llm model as an error will be raised. If it exists the information from db gets 
+    through ml and llm model as an error will be raised to the database. If it exists the information from db gets 
     fetched and displayed to the user
     '''
-    conn = st.connection("gsheets",type=GSheetsConnection)
+    conn = st.connection("gsheets",type=GSheetsConnection) #initiation db connection
     try:
       text=str(text)
       text = text.replace("'", "''") #sanitises text
-      sqlQuery=f"SELECT EXISTS(SELECT 1 FROM Sheet1 where Article = '{text}') AS news_exist" 
+      sqlQuery=f"SELECT EXISTS(SELECT 1 FROM Sheet1 where Article = '{text}') AS news_exist" #checks if article exists
       select=conn.query(sql=sqlQuery,ttl=20)
-      sql=f"SELECT * FROM Sheet1 WHERE Article ='{text}'" #uses sql select statement to get updated result
+      sql=f"SELECT * FROM Sheet1 WHERE Article ='{text}'" #uses sql select statement to get updated result 
       select=conn.query(sql=sql,ttl=20)
       classification = select['Classification'].loc[0].upper()
       llm = select['LLM'].loc[0]
@@ -68,7 +68,7 @@ def check_db(text):
          colour = ':green'
       else:
          colour = ':red' 
-      st.markdown(f'We have already classified this article and found it was {colour}[**{classification}**]') # need to work out the colour c 
+      st.markdown(f'We have already classified this article and found it was {colour}[**{classification}**]')
       st.markdown('Our Large Language model has Fact-Checked the claims and found:')
       st.write(llm)
       st.markdown(f'Additionally we found that this news article with the keywords of "{topics}" has a {sent_dict[sentiment]} sentiment')
@@ -119,7 +119,7 @@ def predict(data):
    
     df = df.dropna()
     vectorizer = TfidfVectorizer()
-    tfidf_matrix = vectorizer.fit_transform(df['Statement']) #instead of transforming each time could load transformed one 
+    tfidf_matrix = vectorizer.fit_transform(df['Statement'])  
 
     new_tfidf = vectorizer.transform(data2['Statement'])
     
@@ -146,11 +146,11 @@ def predict(data):
 
     datee=date.today()
     stuff=[data,classification,datee]
-    return stuff
+    return stuff 
     
 def llm_agent(chat, q):
   '''
-  This loads the duckduckgo tool and the langchain agent using the LLM of llama 8b.
+  This loads the duckduckgo tool and the langchain agent using the LLM of llama 70b.
   This is the part where the llm will recieve the claims and use the tools to make a decision if
   real or fake
   '''
@@ -300,11 +300,11 @@ if text:
     if verify == False:
       stuff = predict(text)
       st.markdown('*please wait while our Large Language Model checks the facts of this article...*')
-      try: #exception handling for llm agent becuase does not always work
-         result = agent(text)
-      except Exception as e:
-         st.write('An Error has occurred please try again later!')
-         result = 'NA' 
+      #try: #exception handling for llm agent becuase does not always work
+      result = agent(text)
+      #except Exception as e:
+      #   st.write('An Error has occurred please try again later!')
+      #   result = 'NA' 
       st.markdown('**Disclaimer**⚠️ Machine Learning is not 100 percent accurate and can make mistakes')
       sentiment, sentiment_coloured = get_sentiment(text)
       text_list = [text]
