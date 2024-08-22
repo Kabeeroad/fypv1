@@ -156,10 +156,6 @@ elif option == 'All Time':
     ax.set_ylabel("Number of Classifications")
     st.pyplot(fig)  
 
-
-
-  
-
 retreive = "SELECT * FROM Sheet1"
 select=conn.query(sql=retreive,ttl=20)
 df=pd.DataFrame(select)
