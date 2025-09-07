@@ -53,6 +53,7 @@ For fact-checking, the app integrates Meta's llama3-70b LLM model. It extracts k
 
 ### Sentiment and Topic Analysis
 
+
 - **Sentiment Analysis**: The sentiment of the article is determined using VADER sentiment analysis.
 - **Topic Modeling**: Topics are identified using LDA, providing insights into the main subjects discussed in the article.
 
