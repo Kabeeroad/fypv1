@@ -11,6 +11,7 @@ Welcome! This web application uses a hybrid approach developed from research usi
 - **Analytics Dashboard**: View statistics on classified articles and trends over various time periods.
 
 - Try it now at: ****
+   https://news-fact-checker.streamlit.app/
   
 ## Installation if wanting to try locally
 
