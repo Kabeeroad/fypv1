@@ -1,7 +1,6 @@
 # Fake News Detector Web App
 
-Welcome! This web application uses a hybrid approach developed from research using machine learning and large language models to help users determine the authenticity of news articles. The App also provides sentiment and topic analysis. 
-
+Welcome! This web application uses a hybrid approach developed from research using machine learning and large language models to help users determine the authenticity of news articles. The App also provides sentiment and topic analysis.
 
 ## Features
 
@@ -11,25 +10,27 @@ Welcome! This web application uses a hybrid approach developed from research usi
 - **Topic Modeling**: Identify key topics discussed in the article using Latent Dirichlet Allocation (LDA).
 - **Analytics Dashboard**: View statistics on classified articles and trends over various time periods.
 
-- Try it now at: **https://fake-news-detector-web-app-v1.streamlit.app/**
+- Try it now at: ****
   
-
-## Installation if wanting to try locally:
+## Installation if wanting to try locally
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/fake-news-detector.git
    cd fake-news-detector
    ```
 
 2. Install the required packages:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 3. Run the Streamlit app:
+
    ```bash
-   streamlit run HomePage.py
+   streamlit run Home.py
    ```
 
 ## Usage
@@ -74,4 +75,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 Special thanks to the developers of the libraries and tools used in this project.
 
 ---
-
