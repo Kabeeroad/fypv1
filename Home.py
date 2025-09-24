@@ -302,7 +302,7 @@ Give your analysis in exactly 3 sentences. Be specific about what evidence suppo
 
 @st.cache_data(show_spinner='🔍 Multiple sources check kar rahe hain...', ttl=1800)
 def enhanced_fact_check(article):
-    """Enhanced fact checking with multiple sources"""
+    """TruthLens """
     
     # Truncate article if too long
     max_chars = 1000
@@ -708,8 +708,8 @@ def topic(article):
 # MAIN APP CONTENT - ENHANCED VERSION
 # =============================================================================
 
-st.write("# Fake News Detector 🕵️‍♂️")
-st.markdown("### Enhanced with Multi-Source Verification & Security Analysis")
+st.write("# TruthLens 🕵️‍♂️")
+st.markdown("###  AI-powered Fake News & URL Detector 🤖🛡️")
 
 text = st.text_input("Enter an Article or News URL here:", key="Article")
 st.write('Hint💡: Try to enter as much of the news article contents as possible or paste a URL for automatic analysis.')
@@ -922,9 +922,8 @@ st.markdown("---")
 st.markdown(
     """
     <div style='text-align: center; color: gray; font-size: 14px;'>
-        <p>🔍 Fake News Detector | Powered by <b>Machine Learning</b>, <b>LLMs</b>, and <b>Trusted Sources</b></p>
-        <p>⚠️ Results are AI-generated and may not be 100% accurate. Always verify with multiple sources.</p>
-        <p>Built with ❤️ using <a href="https://streamlit.io/" target="_blank" style="color: #38b6ff; text-decoration: none;">Streamlit</a></p>
+        <p>🔍 TruthLens — Powered by ML · LLM · Multi-Source Verification</p>
+       
     </div>
     """,
     unsafe_allow_html=True
