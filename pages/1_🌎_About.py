@@ -63,7 +63,7 @@ if stats and stats['total'] > 0:
     if stats['last_analysis']:
         st.info(f"Last analysis performed: {stats['last_analysis']}")
 
-tab1, tab2, tab3 = st.tabs(["Purpose", "Technical Specifications", "How It Works"])
+tab1, tab2, = st.tabs(["Purpose", "Technical Specifications"])
 
 with tab1:
     st.subheader("Purpose")
@@ -111,69 +111,69 @@ with tab2:
         - Comprehensive report generation
         """)
     
-    st.write("This uses a Logistic Regression algorithim trained on around 76,000 news articles achieving 0.95 accuracy.")
+    st.write("This uses a Logistic Regression algorithim trained on around 76,000 news articles achieving 86.95 accuracy.")
     st.write("To fact check the claims, Meta's llama3-70b LLM model with the tools of Duckduckgo and Wikipedia are used.")
     
-    st.markdown("### Technology Stack")
+    # st.markdown("### Technology Stack")
     col1, col2 = st.columns(2)
     
-    with col1:
-        st.markdown("""
-        **Machine Learning:**
-        - Scikit-learn (Logistic Regression)
-        - NLTK (Natural Language Processing)
-        - TF-IDF Vectorization
-        - Pandas & NumPy
-        """)
+#     with col1:
+#         st.markdown("""
+#         **Machine Learning:**
+#         - Scikit-learn (Logistic Regression)
+#         - NLTK (Natural Language Processing)
+#         - TF-IDF Vectorization
+#         - Pandas & NumPy
+#         """)
     
-    with col2:
-        st.markdown("""
-        **AI & Search:**
-        - LangChain Framework
-        - Groq API (Llama3-70B)
-        - DuckDuckGo Search API
-        - Wikipedia API
-        """)
+#     with col2:
+#         st.markdown("""
+#         **AI & Search:**
+#         - LangChain Framework
+#         - Groq API (Llama3-70B)
+#         - DuckDuckGo Search API
+#         - Wikipedia API
+#         """)
     
-    st.markdown("""
-    **Database & Interface:**
-    - SQLite Database
-    - Streamlit Web Framework
-    - Matplotlib & WordCloud Visualization
-    """)
+#     st.markdown("""
+#     **Database & Interface:**
+#     - SQLite Database
+#     - Streamlit Web Framework
+#     - Matplotlib & WordCloud Visualization
+#     """)
 
-with tab3:
-    st.subheader("How It Works")
+# with tab3:
+#     st.subheader("How It Works")
     
-    st.markdown("### 🔍 Detection Process")
+#     st.markdown("### 🔍 Detection Process")
     
-    st.markdown("""
-    **1. Article Input**
-    - Paste article text directly, or
-    - Provide a URL for automatic content extraction
+#     st.markdown("""
+#     **1. Article Input**
+#     - Paste article text directly, or
+#     - Provide a URL for automatic content extraction
     
-    **2. Preprocessing**
-    - Remove special characters and URLs
-    - Tokenization and lemmatization
-    - Stop word removal
-    - Text normalization
+#     **2. Preprocessing**
+#     - Remove special characters and URLs
+#     - Tokenization and lemmatization
+#     - Stop word removal
+#     - Text normalization
     
-    **3. ML Classification**
-    - Convert text to TF-IDF vectors
-    - Apply trained Logistic Regression model
-    - Generate probability scores for Fake/Real
+#     **3. ML Classification**
+#     - Convert text to TF-IDF vectors
+#     - Apply trained Logistic Regression model
+#     - Generate probability scores for Fake/Real
     
-    **4. LLM Fact-Checking**
-    - Extract key claims from the article
-    - Search Wikipedia and web sources
-    - Verify facts against reliable sources
-    - Generate detailed explanation
+#     **4. LLM Fact-Checking**
+#     - Extract key claims from the article
+#     - Search Wikipedia and web sources
+#     - Verify facts against reliable sources
+#     - Generate detailed explanation
     
-    **5. Additional Analysis**
-    - Sentiment analysis (Positive/Negative/Neutral)
-    - Topic modeling to identify key themes
-    - Confidence scoring and explanations
-    """)
+#     **5. Additional Analysis**
+#     - Sentiment analysis (Positive/Negative/Neutral)
+#     - Topic modeling to identify key themes
+#     - Confidence scoring and explanations
+#     """)
     
     st.markdown("### 💡 Best Practices")
     st.info("""
