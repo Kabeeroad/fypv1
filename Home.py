@@ -337,7 +337,7 @@ def enhanced_fact_check(article):
             })
         
         # 3. LLM analysis
-        st.write("🤖 AI analysis...")
+        st.write(" 🤖 AI analysis...")
         llm_result = simple_llm_analysis(article, wiki_result, google_result)
         
         # Combine results for final verdict
@@ -708,8 +708,10 @@ def topic(article):
 # MAIN APP CONTENT - ENHANCED VERSION
 # =============================================================================
 
+
 st.write("# TruthLens 🕵️‍♂️")
-st.markdown("###  AI-powered Fake News & URL Detector 🤖🛡️")
+st.markdown("### TruthLens — Real-time News Verification & URL Safety 🤖🛡️")
+
 
 text = st.text_input("Enter an Article or News URL here:", key="Article")
 st.write('Hint💡: Try to enter as much of the news article contents as possible or paste a URL for automatic analysis.')
@@ -788,7 +790,9 @@ if text:
     
     if verify == False:
         # ML Model Analysis
-        st.subheader("🤖 AI Model Analysis")
+       
+
+        st.subheader("🤖AI Model Analysis")
         stuff = predict(text)
         
         # Enhanced Multi-Source Fact Checking 
@@ -863,7 +867,7 @@ if text:
     #     disclaimer_col1, disclaimer_col2 = st.columns(2)
         
     #     with disclaimer_col1:
-    #         st.warning("🤖 **AI Limitations**")
+    #         st.warning(" **AI Limitations**")
     #         st.write("• Machine Learning models can make mistakes")
     #         st.write("• Always cross-verify important information")
     #         st.write("• Consider multiple reliable sources")
