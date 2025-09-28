@@ -111,7 +111,7 @@ with tab2:
         - Comprehensive report generation
         """)
     
-    st.write("This uses a Logistic Regression algorithim trained on around 76,000 news articles achieving 86.95 accuracy.")
+    st.write("This uses a Logistic Regression algorithim trained on around 76,000 news articles.")
     st.write("To fact check the claims, Meta's llama3-70b LLM model with the tools of Duckduckgo and Wikipedia are used.")
     
     # st.markdown("### Technology Stack")

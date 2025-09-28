@@ -709,8 +709,8 @@ def topic(article):
 # =============================================================================
 
 
-st.write("# TruthLens 🕵️‍♂️")
-st.markdown("### TruthLens — Real-time News Verification & URL Safety 🤖🛡️")
+st.write("# Fake News Detectore  🕵️‍♂️")
+st.markdown("### Real time News Verification & URL Safety 🤖🛡️")
 
 
 text = st.text_input("Enter an Article or News URL here:", key="Article")
@@ -926,7 +926,7 @@ st.markdown("---")
 st.markdown(
     """
     <div style='text-align: center; color: gray; font-size: 14px;'>
-        <p>🔍 TruthLens — Powered by ML · LLM · Multi-Source Verification</p>
+        <p>🔍 Fake News Detectore — Powered by ML · LLM · Multi-Source Verification</p>
        
     </div>
     """,
