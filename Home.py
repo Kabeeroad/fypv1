@@ -709,7 +709,7 @@ def topic(article):
 # =============================================================================
 
 
-st.write("# Fake News Detectore  🕵️‍♂️")
+st.write("# Fake News Detection System 🕵️‍♂️")
 st.markdown("### Real time News Verification & URL Safety 🤖🛡️")
 
 

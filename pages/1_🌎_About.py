@@ -6,7 +6,7 @@ from datetime import date
 st.set_page_config(page_title="About", page_icon="🌎")
 
 st.markdown("# About")
-st.write("This is a webapp that has implemented cutting edge tools from our research aiming to tackle fake news by utilising Machine Learning and Large Language models.")
+st.write(" This project has been undertaken as the final year project by BSIT( information technology) students at the university of sufism and modern sciences. the main goal of this system is to detect fake and real news using machine learning (ml) and large language models (llms). with an easy-to-use interface built on python streamlit, the platform allows users to enter text or urls and instantly check whether the news is authentic or suspicious...")
 #st.write("See the research paper here -> TBC")
 
 # Database statistics section
@@ -111,8 +111,8 @@ with tab2:
         - Comprehensive report generation
         """)
     
-    st.write("This uses a Logistic Regression algorithim trained on around 76,000 news articles.")
-    st.write("To fact check the claims, Meta's llama3-70b LLM model with the tools of Duckduckgo and Wikipedia are used.")
+    # st.write("This uses a Logistic Regression algorithim trained on around 76,000 news articles.")
+    # st.write("To fact check the claims, Meta's llama3-70b LLM model with the tools of Duckduckgo and Wikipedia are used.")
     
     # st.markdown("### Technology Stack")
     col1, col2 = st.columns(2)
@@ -184,13 +184,13 @@ with tab2:
     - Cross-reference results with multiple sources when in doubt
     """)
     
-    st.warning("""
-    **Limitations:**
-    - Machine learning models are not 100% accurate
-    - Fact-checking depends on available online sources
-    - New or very recent events may not be verifiable
-    - Always use critical thinking and multiple sources
-    """)
+    # st.warning("""
+    # **Limitations:**
+    # - Machine learning models are not 100% accurate
+    # - Fact-checking depends on available online sources
+    # - New or very recent events may not be verifiable
+    # - Always use critical thinking and multiple sources
+    # """)
 
 # Footer
 st.markdown("---")
